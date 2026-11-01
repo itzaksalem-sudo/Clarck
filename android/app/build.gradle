@@ -6,8 +6,8 @@ android {
         applicationId 'il.clark.game'
         minSdk 24
         targetSdk 34
-        versionCode 105
-        versionName '105'
+        versionCode 107
+        versionName '107'
     }
     buildTypes { release { minifyEnabled false } }
     compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
