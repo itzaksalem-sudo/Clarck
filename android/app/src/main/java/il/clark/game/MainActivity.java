@@ -62,7 +62,14 @@ public class MainActivity extends Activity {
             | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
     }
 
-    @Override public void onWindowFocusChanged(boolean f) { super.onWindowFocusChanged(f); if (f) immersive(); }
+    @Override public void onWindowFocusChanged(boolean f) {
+        super.onWindowFocusChanged(f);
+        if (f) {
+            immersive();
+            // the system bars just went away: tell the page its window changed size, so it lays itself out again
+            web.postDelayed(new Runnable() { public void run() { web.evaluateJavascript("window.dispatchEvent(new Event('resize'))", null); } }, 350);
+        }
+    }
     @Override protected void onResume() { super.onResume(); web.onResume(); }
     @Override protected void onPause() { web.onPause(); super.onPause(); }
     @Override protected void onSaveInstanceState(Bundle o) { super.onSaveInstanceState(o); web.saveState(o); }
