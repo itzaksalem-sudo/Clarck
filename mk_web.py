@@ -7,7 +7,7 @@ s = open(os.path.join(SITE, 'index.html'), encoding='utf-8').read()
 m = re.search(r"const BUILD='(v\d+)'", s); BUILD = m.group(1)
 # keep the repo's .git, replace everything else
 for n in os.listdir(REPO):
-    if n in ('.git',): continue
+    if n in ('.git', '.github', 'android', 'Clark.apk', 'mk_web.py'): continue
     p = os.path.join(REPO, n)
     shutil.rmtree(p) if os.path.isdir(p) else os.remove(p)
 shutil.copytree(os.path.join(SITE, 'a'), os.path.join(REPO, 'a'))
